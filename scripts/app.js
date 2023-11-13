@@ -13,9 +13,7 @@ $(document).ready(function () {
 
     // Make an AJAX request to superheroes.php
     $.ajax({
-      url:
-        "http://localhost/info2180-lab4/superheroes.php?query=" +
-        sanitizedQuery,
+      url: "./superheroes.php?query=" + sanitizedQuery,
       type: "GET",
       dataType: "json",
       success: function (superhero) {

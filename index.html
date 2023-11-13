@@ -4,12 +4,18 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
+        <title>Lab4</title>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
         <script src="scripts/app.js"></script>
     </head>
 
     <body>
-        <button>Search</button>
+        <form id="searchForm">
+            <label for="searchInput">Search Superheroes by Name or Alias:</label>
+            <input type="text" id="searchInput" name="searchInput" placeholder="Search by Name or Alias" required>
+            <button type="submit">Search</button>
+        </form>
+        <div id="result"></div>
     </body>
 
 </html>

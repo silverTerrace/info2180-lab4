@@ -1,5 +1,8 @@
 <?php
 
+ini_set('display_errors', 'On');
+error_reporting(E_ALL | E_STRICT);
+
 $superheroes = [
   [
       "id" => 1,
@@ -63,10 +66,30 @@ $superheroes = [
   ], 
 ];
 
-?>
+// Function to find a superhero by name or alias
+function findSuperhero($query) {
+    global $superheroes;
+    foreach ($superheroes as $superhero) {
+        if (strcasecmp($superhero["name"], $query) === 0 || strcasecmp($superhero["alias"], $query) === 0) {
+            return $superhero;
+        }
+    }
+    return null; // Superhero not found
+}
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+// Get the search query from the GET parameters
+$searchQuery = isset($_GET['query']) ? $_GET['query'] : '';
+
+if (isset($_GET['query'])) {
+    // Get the query parameter
+    $query = $_GET['query'];
+
+    // Log the received query to the error log
+    error_log("Received query: $query");}
+
+// Find the superhero
+$foundSuperhero = findSuperhero($searchQuery);
+
+// Return the object as JSON
+header('Content-Type: application/json');
+echo json_encode($foundSuperhero);
